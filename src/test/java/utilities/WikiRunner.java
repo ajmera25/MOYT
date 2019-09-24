@@ -16,7 +16,6 @@ public class WikiRunner implements Runnable {
 		this.platform = platform;
 	}
 
-	@Override
 	public void run() {
 		DriverManagerFactory browserFactory = new DriverManagerFactory();
 		try {

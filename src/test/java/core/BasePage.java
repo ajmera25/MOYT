@@ -5,14 +5,13 @@ import org.openqa.selenium.support.PageFactory;
 
 import browserfactory.DriverManagerFactory;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import utilities.WebDriverClient;
 
 public class BasePage {
 	public WebDriverClient pageWebDriverClient = null;
 	DriverManagerFactory driverManagerFactory = null;
-	protected AppiumDriver<MobileElement> appiumDriver = null;
+	protected AppiumDriver appiumDriver = null;
 	protected WebDriver driver = null;
 	public String currentURL = "";
 	
@@ -23,7 +22,7 @@ public class BasePage {
     }
 	
 	//So that we can utilize appium driver method
-	public BasePage(AppiumDriver<MobileElement> appiumDriver) {
+	public BasePage(AppiumDriver appiumDriver) {
         this.appiumDriver = appiumDriver;
         PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
         pageWebDriverClient = new WebDriverClient(appiumDriver);

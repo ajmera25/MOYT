@@ -5,20 +5,20 @@ import java.net.URL;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 
 public class DriverManagerFactory {
 
-	private static ThreadLocal<AppiumDriver<MobileElement>> threadAppiumDriver = new ThreadLocal<AppiumDriver<MobileElement>>();
+	private static ThreadLocal<AppiumDriver> threadAppiumDriver = new ThreadLocal<AppiumDriver>();
 	private static ThreadLocal<RemoteWebDriver> threadDesktopWebDriver = new ThreadLocal<RemoteWebDriver>();
 	String hub = System.getProperty("hub");
 
-	public AppiumDriver<MobileElement> getAppiumDriver() {
-		AppiumDriver<MobileElement> wdriver = threadAppiumDriver.get();
+	public AppiumDriver getAppiumDriver() {
+		AppiumDriver wdriver = threadAppiumDriver.get();
 		return wdriver;
 	}
 	
@@ -27,7 +27,7 @@ public class DriverManagerFactory {
 		return wdriver;
 	}
 	
-	public static void setAppiumDriver(AppiumDriver<MobileElement> driver) {
+	public static void setAppiumDriver(AppiumDriver driver) {
 		threadAppiumDriver.set(driver);
 	}
 	
@@ -64,18 +64,26 @@ public class DriverManagerFactory {
 	}
 	
 	public void initializeMobileDriver() throws MalformedURLException {
-		ChromeOptions options=new ChromeOptions();
-		 DesiredCapabilities capabilities = new DesiredCapabilities();
-	        //capabilities.setCapability("browserName", "Chrome");
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
+	       capabilities.setCapability("deviceName", "9243934");
+	       // capabilities.setCapability("deviceName", "192.168.0.27:5000");
+	        capabilities.setCapability("platformVersion", "9");
+	        capabilities.setCapability("platformName", "android");
+	      
+	        /*capabilities.setCapability("appPackage", "com.google.android.youtube");
+	        capabilities.setCapability("appActivity", "com.google.android.apps.youtube.app.WatchWhileActivity");*/
+	        
+		 /*DesiredCapabilities capabilities = new DesiredCapabilities();
+	      //  capabilities.setCapability("browserName", "chrome");
 	        capabilities.setCapability("deviceName", "9243934");
 	        //capabilities.setCapability("deviceId", "192.168.0.27:5000");
 	        capabilities.setCapability("platformVersion", "9");
 	        capabilities.setCapability("platformName", "ANDROID");
-
 	        capabilities.setCapability("appPackage", "com.google.android.youtube");
-	        capabilities.setCapability("appActivity", "com.google.android.apps.youtube.app.WatchWhileActivity");
-	        options.merge(capabilities);
-			setAppiumDriver(new AppiumDriver<MobileElement>(new URL(hub), options));	
+	        capabilities.setCapability("appActivity", "com.google.android.apps.youtube.app.WatchWhileActivity");*/
+	       // options.merge(capabilities);
+			setAppiumDriver(new AppiumDriver(new URL(hub), capabilities));	
 	}
 	
 	public void closeAllDriver() {

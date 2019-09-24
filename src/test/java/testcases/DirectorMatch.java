@@ -52,17 +52,10 @@ public class DirectorMatch extends BaseTest{
 			movieDetails.setWiki_directors(getDirector.invoke(c).toString());
 			
 			Method getImdbLink = clazz.getDeclaredMethod("getImdLink");
-			movieDetails.setWiki_directors(getDirector.invoke(c).toString());
-			TestFactory.movieMap.put(movieDetails.getMovie_Id(),movieDetails);
-		}/*else {
-			browserFactory.initializeDriver(movieDetails.getPlatform());
-			WikipediaPageObject wikipage = new WikipediaPageObject(browserFactory.getAppiumDriver());
-			wikipage.setUrl(movieDetails.getWiki_url());
-			movieDetails.setWiki_directors(wikipage.getDirector());
-			movieDetails.setImdb_directors(wikipage.getImdDirector());
-			browserFactory.getDesktopWebDriver().quit();
+			movieDetails.setImdb_directors(getImdbLink.invoke(c).toString());
 			
-		}*/
+			TestFactory.movieMap.put(movieDetails.getMovie_Id(),movieDetails);
+		}
 		catch(Exception e){
 			throw e;
 		}

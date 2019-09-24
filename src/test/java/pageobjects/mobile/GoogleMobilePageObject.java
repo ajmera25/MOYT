@@ -5,11 +5,10 @@ import org.openqa.selenium.support.FindBy;
 
 import core.BasePage;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 
 public class GoogleMobilePageObject extends BasePage{
 
-	public GoogleMobilePageObject(AppiumDriver<MobileElement> appiumDriver) {
+	public GoogleMobilePageObject(AppiumDriver appiumDriver) {
 		super(appiumDriver);
 	}
 	
