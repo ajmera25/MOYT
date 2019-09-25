@@ -65,7 +65,7 @@ public class DriverManagerFactory {
 	
 	public void initializeMobileDriver() throws MalformedURLException {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
-		capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
+		capabilities.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
 	       capabilities.setCapability("deviceName", "9243934");
 	       // capabilities.setCapability("deviceName", "192.168.0.27:5000");
 	        capabilities.setCapability("platformVersion", "9");
